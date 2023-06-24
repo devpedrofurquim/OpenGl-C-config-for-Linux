@@ -1,14 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
 #include <stdbool.h>
+
+static unsigned int CompileShader(const char source, unsigned int type);
+// Code to compile shaders
+static int CreateShader(const char vertexShader, const char fragmentsShader){
+  unsigned int program = glCreateProgram();
+  unsigned int vs = glCreateShader(GL_VERTEX_SHADER);
+};
 
 int main() {
 
-  // Initialise GLFW
+  // Initialise GLFW library.
   glewExperimental = true; // Needed for core profile
   if( !glfwInit() )
   {
@@ -16,27 +22,27 @@ int main() {
       return -1;
   }
 
-  glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
+  glfwWindowHint(GLFW_SAMPLES, 4); // 4x Antialiasing // Sets the number of samples to 4, each pixel will be sampled 4 times to calculate its final color.
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);  // 3.<3>
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
 
   // Open a window and create its OpenGL context
   GLFWwindow* window; // (In the accompanying source code, this variable is global for simplicity)
-  window = glfwCreateWindow( 1024, 768, "Breakout", NULL, NULL);
+  window = glfwCreateWindow( 1024, 768, "First Game", NULL, NULL);
   
     if( window == NULL ){
-      fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
+      fprintf( stderr, "Failed to open GLFW window.\n");
       glfwTerminate();
       return -1;
   }
 
 // An array of 3 vectors which represents 3 vertices
 static const GLfloat g_vertex_buffer_data[] = {
-   -1.0f, -1.0f, 0.0f,
-   1.0f, -1.0f, 0.0f,
-   0.0f,  1.0f, 0.0f,
+   -1.0f, -1.0f, 0.0f, // represents the lower-left corner of the triangle.
+   1.0f, -1.0f, 0.0f,   // represents the lower-right corner of the triangle
+   0.0f,  1.0f, 0.0f,  // represents the top-center of the triangle
 };
 
 glfwMakeContextCurrent(window); // Initialize GLEW

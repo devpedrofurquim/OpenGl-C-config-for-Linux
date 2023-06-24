@@ -17,7 +17,7 @@ This configuration is the equivalent of the <windows.h> shared library for Windo
 Clone the project
 
 ```bash
-  git clone https://git@github.com:devpedrofurquim/OpenGl-C-config-for-Linux.git
+  git clone https://git@github.com:devpedrofurquim/opengl-c-config-for-linux.git
 ```
 
 Go to the project directory
